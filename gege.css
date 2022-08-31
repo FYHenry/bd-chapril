@@ -1,8 +1,7 @@
 body{
 font-family: "Domestic Manners", serif;
-background-color: rgb(65, 60, 60);
-color: #000;
-background-image: url(images/bg.png);
+background-color: #000000;
+background-image: url(images/bg-tab.png);		
 font-size:12px;
 margin:0px;
 }
@@ -69,8 +68,8 @@ font-style: normal;
 }
 
  .save a{
-background-color: #000;
-color: #fff;
+background-color: #FFFFFF;
+color: #000000;
 padding:7px;
 text-decoration:none;
 font-weight:bold;
@@ -80,8 +79,8 @@ text-shadow: none;
 
 .save a:hover
 {
-background-color:#BF6B04;
-color:#000;	
+background-color:#F5F5F5;
+color: #808080
 }
 
 
@@ -91,10 +90,8 @@ width: auto;
 margin:0;
 margin-top: 30px;
 height: auto;
-background-color: #d5b578;
-border:7px solid rgb(213, 181, 120);
+background-color: #000000;
 box-shadow:0 3px 10px black;
-background-image: url(images/bg-tab.png);		
 }
 
 #tableauDeBord
@@ -102,9 +99,11 @@ background-image: url(images/bg-tab.png);
 width: 244px;
 float: left;
 height: 100%;
-background-color: #d5b578;
-background-image: url(images/bg-tab.png);
-
+}
+#logo
+{
+ margin-left: 10px;
+ margin-top: 10px;
 }
  input, .mini, #wrapper, #toolbar a
  {
@@ -130,6 +129,7 @@ margin-bottom: 5px;
 
 #cscreen
 {
+padding-top: 10px;
 margin-left:244px;
 width: 590px;
 height: 100%;
@@ -140,7 +140,8 @@ height: 100%;
 #lib, .instructions, #toolbar
 {
 padding-left: 14px;
-width: 220px;
+width: 215px;
+margin-left: 10px;
 }
 
 
@@ -153,6 +154,15 @@ overflow-x: hidden;
 margin-top: 14px;
 }
 
+.instructions
+{
+    background-color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+    
 
 #cscreen canvas
 {	
@@ -174,7 +184,7 @@ float:left;
 }
 
 .mini:hover{
-background-color:#BF6B04;
+background-color:#C0C0C0;
 cursor: hand;
 cursor: pointer;
 }
@@ -196,7 +206,7 @@ color:black;
 margin-top: 18px;
 }
 h2.last
-{padding-bottom: 0;
+{padding-bottom: 0; color: #FFFFFF; background-color: #000000;
 }
 
 .instructions ul{
@@ -215,19 +225,18 @@ footer
 margin-top: 10px;
 width: 100%;
 text-align: center;
-color: #273740;
-
+color: #FFFFFF;
+padding-bottom: 10px;
 }
 
 footer p
 {
 display: inline;
-background-color:#ebebeb;
 }
 
 footer a
 {
-color: #273740;
+color: #F5F5F5;
 font-weight: bold;
 text-decoration: none;
 }
