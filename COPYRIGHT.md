@@ -1,5 +1,8 @@
-== Ragaboom ==
+# Copyright
 
+## Ragaboom
+
+```
 Copyright (C) 2011 by Willian Carvalho
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,3 +22,22 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+```
+
+## jQuery
+
+```
+jQuery JavaScript Library v1.5.2
+http://jquery.com/
+
+Copyright 2011, John Resig
+Dual licensed under the MIT or GPL Version 2 licenses.
+http://jquery.org/license
+
+Includes Sizzle.js
+http://sizzlejs.com/
+Copyright 2011, The Dojo Foundation
+Released under the MIT, BSD, and GPL Licenses.
+
+Date: Thu Mar 31 15:28:23 2011 -0400
+```
