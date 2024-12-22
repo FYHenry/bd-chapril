@@ -7,7 +7,6 @@ const RESOURCES = [
     '/comicgen.js',
     '/index.html',
     '/jquery-1.5.2.min.js',
-    '/pop.mp3',
     '/pop.ogg',
     '/ragaboom.min.js',    
     '/toons/affirmatif_mini.png',
