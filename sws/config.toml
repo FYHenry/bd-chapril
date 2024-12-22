@@ -7,3 +7,11 @@ root = "./"
 
 #### List of index files
 index-files = "index.html"
+
+[advanced]
+
+#### Redirects
+[[advanced.rewrites]]
+source = "/"
+destination = "/index.html"
+redirect = 301
