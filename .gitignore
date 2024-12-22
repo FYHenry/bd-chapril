@@ -1,3 +1,5 @@
 # Ignored files
 node_modules/
 package-lock.json
+sws/static-web-server
+sws/.crates*

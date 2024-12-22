@@ -1,0 +1,9 @@
+[general]
+
+#### Address & Root dir
+host = "127.0.0.1"
+port = 3000
+root = "./"
+
+#### List of index files
+index-files = "index.html"
