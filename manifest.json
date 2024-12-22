@@ -1,0 +1,13 @@
+{
+    "name": "Service BD du Chapril",
+    "short_name": "bd",
+    "description": "Le générateur de BD du Chapril",
+    "icons":[
+        {
+            "src": "images/banniere_bdchapril.png"
+        }
+    ],
+    "start_url": "/index.html",
+    "display": "browser",
+    "prefer_related_applications": false
+}

@@ -3,6 +3,7 @@
 
 const RESOURCES = [
     '/',
+    '/manifest.json',
     '/bdchapril.css',
     '/comicgen.js',
     '/index.html',
