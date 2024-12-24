@@ -1,4 +1,5 @@
-export const checkCacheFunction = () => {
+// Cache manager
+const checkCacheFunction = () => {
     if ('applicationCache' in window) {
         try {
             var webappCache = window.applicationCache;
@@ -42,15 +43,18 @@ export const checkCacheFunction = () => {
             window.addEventListener("load", loaded, false);
             webappCache.addEventListener("updateready", updateCache, false);
             webappCache.addEventListener("error", errorCache, false);
+            return true;
         } catch (error) {
             console.error(`Cache check failed with ${error}.`);
+            return false;
         }
     } else {
         console.warn("Application caches are not supported!");
+        return false;
     }
 };
 
-export const registerServiceWorker = async () => {
+const registerServiceWorker = async () => {
     if ('serviceWorker' in navigator) {
         try {
             const registration = await navigator.serviceWorker.register(
@@ -74,5 +78,7 @@ export const registerServiceWorker = async () => {
     }
 };
 
-checkCacheFunction();
-registerServiceWorker();
+const HAS_OLD_CACHE = checkCacheFunction();
+if (!HAS_OLD_CACHE) {
+    registerServiceWorker();
+}
