@@ -1,5 +1,4 @@
-'use strict';
-const checkCacheFunction = () => {
+export const checkCacheFunction = () => {
     if ('applicationCache' in window) {
         try {
             var webappCache = window.applicationCache;
@@ -51,7 +50,7 @@ const checkCacheFunction = () => {
     }
 };
 
-const registerServiceWorker = async () => {
+export const registerServiceWorker = async () => {
     if ('serviceWorker' in navigator) {
         try {
             const registration = await navigator.serviceWorker.register(
