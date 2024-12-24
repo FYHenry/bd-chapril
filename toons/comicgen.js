@@ -6,7 +6,7 @@ var scene = new RB.Scene(c);
 var w = c.width;
 var h = c.height;
 var fontFamily = "Domestic Manners, Arial, helvetica, sans serif";
-var pop = new Audio('pop.ogg');
+var pop = new Audio('sounds/pop.ogg');
 var currentObj = null;
 
 scene.add( scene.rect(w, h, 'white') );
@@ -23,7 +23,7 @@ cg.clearScreen = function(){
 	w = c.width;
 	h = c.height;
 	fontFamily = "Domestic Manners, Arial, helvetica, sans serif";
-	pop = new Audio('pop.ogg');
+	pop = new Audio('sounds/pop.ogg');
 	currentObj = null;
 
 	scene.add( scene.rect(w, h, 'white') );

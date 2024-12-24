@@ -7,7 +7,7 @@ export const RESOURCES = [
     '/comicgen.js',
     '/index.html',
     '/jquery-1.5.2.min.js',
-    '/pop.ogg',
+    '/sounds/pop.ogg',
     '/ragaboom.min.js',
     'images/banniere_bdchapril.png',
     'images/bg-tab.png',
