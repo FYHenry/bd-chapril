@@ -1,4 +1,9 @@
 // Cache manager
+
+/** Create legacy cache
+ * 
+ * @returns It is a success
+ */
 const checkCacheFunction = () => {
     if ('applicationCache' in window) {
         try {
@@ -54,6 +59,9 @@ const checkCacheFunction = () => {
     }
 };
 
+/**
+ * Create service worker's cache
+ */
 const registerServiceWorker = async () => {
     if ('serviceWorker' in navigator) {
         try {
@@ -61,6 +69,7 @@ const registerServiceWorker = async () => {
                 'sw.js',
                 {
                     scope: './',
+                    type: 'module'
                 }
             );
             if (registration.installing) {
@@ -78,7 +87,7 @@ const registerServiceWorker = async () => {
     }
 };
 
-const HAS_OLD_CACHE = checkCacheFunction();
-if (!HAS_OLD_CACHE) {
+const hasOldCache = checkCacheFunction();
+if (!hasOldCache) {
     registerServiceWorker();
 }

@@ -1,7 +1,7 @@
-'use strict';
-export const RESOURCES = [
+/** Cache resources */
+export const cacheResources = [
     '/',
-    'favicon.ico',
+    '/favicon.ico',
     '/manifest.json',
     '/bdchapril.css',
     '/comicgen.js',
@@ -9,8 +9,8 @@ export const RESOURCES = [
     '/jquery-1.5.2.min.js',
     '/sounds/pop.ogg',
     '/ragaboom.min.js',
-    'images/banniere_bdchapril.png',
-    'images/bg-tab.png',
+    '/images/banniere_bdchapril.png',
+    '/images/bg-tab.png',
     '/toons/affirmatif_mini.png',
     '/toons/affirmatif.png',
     '/toons/agace_mini.png',
@@ -537,4 +537,4 @@ export const RESOURCES = [
     '/toons/vieille_dame.png',
     '/toons/voiture_mini.png',
     '/toons/voiture.png'
-].freeze();
+];

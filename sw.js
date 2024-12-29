@@ -1,10 +1,9 @@
 // Service Worker
-'use strict';
-import RESOURCES from "resources.js";
+import { cacheResources } from "resources.js";
 
-const addResourcesToCache = async (RESOURCES) => {
+const addResourcesToCache = async (cacheResources) => {
     const cache = await caches.open('v1');
-    await cache.addAll(RESOURCES);
+    await cache.addAll(cacheResources);
 };
 
 const enableNavigationPreload = async () => {
@@ -20,7 +19,7 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        addResourcesToCache(RESOURCES)
+        addResourcesToCache(cacheResources)
     );
 });
 
