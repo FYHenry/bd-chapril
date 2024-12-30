@@ -69,7 +69,7 @@ const registerServiceWorker = async () => {
                 'sw.js',
                 {
                     scope: './',
-                    type: 'module'
+                    type: 'classic'
                 }
             );
             if (registration.installing) {
