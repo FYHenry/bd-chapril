@@ -1,5 +1,5 @@
 // Service Worker
-import { cacheResources } from "resources.js";
+import { cacheResources } from 'resources.js';
 
 const addResourcesToCache = async (cacheResources) => {
     const cache = await caches.open('v1');
