@@ -3,3 +3,6 @@ node_modules/
 package-lock.json
 sws/static-web-server
 sws/.crates*
+
+# Tools tests
+tools/*_test*
