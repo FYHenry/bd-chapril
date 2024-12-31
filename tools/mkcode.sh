@@ -1,38 +1,47 @@
 #!/usr/bin/bash
 # Code generator
-declare -r CG_PATH='comicgen_test.js'
+declare -r CG_PATH='../comicgen.js'
 declare -r SW_PATH='sw_test.js'
 declare -r AC_PATH='comicgen_test.appcache'
 declare -r IMG_DIR='../toons'
-declare -a TOONS=()
-declare -a MINIS=()
+declare -a toon=()
+declare -a minis=()
 
 # mklist IMG_PATH
 function mklist()(
-    for file in "$1"/*
+    for file in "$1"/*.png
     do
         echo "$file"
     done | sort -d -
 )
 
+# wacg ${TBL[@]}
+function wacg()(
+    local -a -r TBL=( "$@" )
+    for nb in $( seq -s ' ' 0 $(( ${#TBL[@]} - 2 )) )
+    do
+        echo -e "    '${TBL[$nb]}',"
+    done >>${CG_PATH}
+    echo -e "    '${TBL[-1]}'">>${CG_PATH}
+)
 
 for file in $( mklist $IMG_DIR )
 do
     if [[ "$file" =~ ^.+_mini(\..+)? ]]
     then
-        MINIS[${#MINIS[@]}]=$( basename "$file" )
+        minis[${#minis[@]}]=$( basename "$file" )
     else
-        TOONS[${#TOONS[@]}]=$( basename "$file" )
+        toon[${#toon[@]}]=$( basename "$file" )
     fi
 done
 
 echo  -e "\nToons :"
-for file in "${TOONS[@]}"
+for file in "${toon[@]}"
 do
     echo "$file"
 done
 echo -e "\nMinis :"
-for file in "${MINIS[@]}"
+for file in "${minis[@]}"
 do
     echo "$file"
 done
@@ -65,11 +74,7 @@ var lib = \$('#lib');
 var miniUrls = [
 EOF
 
-for nb in $( seq -s ' ' 0 $(( ${#MINIS[@]} - 2 )) )
-do
-    echo -e "    '${MINIS[$nb]}',"
-done >>${CG_PATH}
-echo -e "    '${MINIS[-1]}'">>${CG_PATH}
+wacg ${minis[@]}
 
 while read -r
 do
@@ -80,11 +85,7 @@ done <<EOF >>${CG_PATH}
 var toonUrls = [
 EOF
 
-for nb in $( seq -s ' ' 0 $(( ${#TOONS[@]} - 2 )) )
-do
-    echo -e "    '${TOONS[$nb]}',"
-done >>${CG_PATH}
-echo -e "    '${TOONS[-1]}'">>${CG_PATH}
+wacg ${toon[@]}
 
 while read -r
 do
@@ -93,53 +94,53 @@ done <<EOF >>${CG_PATH}
 ];
 
 cg.clearScreen = function(){
-	ctx = c.getContext('2d');
-	scene = new RB.Scene(c);
-	w = c.width;
-	h = c.height;
-	fontFamily = 'Domestic Manners, Arial, helvetica, sans serif';
-	pop = new Audio('sounds/pop.ogg');
-	currentObj = null;
+    ctx = c.getContext('2d');
+    scene = new RB.Scene(c);
+    w = c.width;
+    h = c.height;
+    fontFamily = 'Domestic Manners, Arial, helvetica, sans serif';
+    pop = new Audio('sounds/pop.ogg');
+    currentObj = null;
 
-	scene.add( scene.rect(w, h, 'white') );
-	scene.update();
+    scene.add( scene.rect(w, h, 'white') );
+    scene.update();
 }
 
 \$(d).keyup(function(e){
 
-	var key = e.keyCode || e.which;
+    var key = e.keyCode || e.which;
 
-	if(key == 46 && currentObj){
-		scene.remove(currentObj);
-		scene.update();
-		RB.destroyCanvas( currentObj.getCanvas().id );
-		currentObj = null;
-	}
+    if(key == 46 && currentObj){
+        scene.remove(currentObj);
+        scene.update();
+        RB.destroyCanvas( currentObj.getCanvas().id );
+        currentObj = null;
+    }
 
-	if( currentObj && (key==37 || key==39) ){
-		cg.hFlip(currentObj);
-	}
+    if( currentObj && (key==37 || key==39) ){
+        cg.hFlip(currentObj);
+    }
 });
 
 \$(d).keydown(function(event){
 
-	var key = event.keyCode || event.which;
+    var key = event.keyCode || event.which;
 
-	if(key == 38 && currentObj){
-		cg.zoomIn(currentObj);
-	}
+    if(key == 38 && currentObj){
+        cg.zoomIn(currentObj);
+    }
 
-	if(key == 40 && currentObj){
-		cg.zoomOut(currentObj);
-	}
+    if(key == 40 && currentObj){
+        cg.zoomOut(currentObj);
+    }
 });
 
 d.onmousewheel = function(mw){
-	if(currentObj && mw.wheelDelta > 0){
-		cg.zoomIn(currentObj);
-	} else if (currentObj && mw.wheelDelta < 0){
-		cg.zoomOut(currentObj);
-	}
+    if(currentObj && mw.wheelDelta > 0){
+        cg.zoomIn(currentObj);
+    } else if (currentObj && mw.wheelDelta < 0){
+        cg.zoomOut(currentObj);
+    }
 };
 
 cg.hoverdiv = function(e,divid){
@@ -164,21 +165,21 @@ cg.sourceSwap = function (e) {
     cg.hoverdiv(e,'focusImg')
 }
 cg.buildMinis = function(){
-	var buffer = '';
+    var buffer = '';
         var divString = "<div class='himg'  data-src-id='IMG_ID'>";
-	var imgString = "<img src='toons/IMG_URL' data-src-id='IMG_ID' class='rc mini' alt='toons'></img>";
-	var link = "<a href=\"javascript:cg.createImage('toons/IMG_URL')\">";
+    var imgString = "<img src='toons/IMG_URL' data-src-id='IMG_ID' class='rc mini' alt='toons'></img>";
+    var link = "<a href=\"javascript:cg.createImage('toons/IMG_URL')\">";
 
-	for(var i=0; i < miniUrls.length; i++){
+    for(var i=0; i < miniUrls.length; i++){
                 buffer += divString.replace(/IMG_ID/,i);
-		buffer += link.replace(/IMG_URL/, toonUrls[i]);
-		buffer += imgString.replace(/IMG_URL/, miniUrls[i]).replace(/IMG_ID/, i) + '</a></div>';
-	}
+        buffer += link.replace(/IMG_URL/, toonUrls[i]);
+        buffer += imgString.replace(/IMG_URL/, miniUrls[i]).replace(/IMG_ID/, i) + '</a></div>';
+    }
 
-	lib.append(buffer);
+    lib.append(buffer);
 
-	//lib.append( \$('#textTool').clone() );
-	\$('#menuContainer').append( \$('#instructs').clone() );
+    //lib.append( \$('#textTool').clone() );
+    \$('#menuContainer').append( \$('#instructs').clone() );
         \$(function () {
           \$('div.himg').hover(cg.sourceSwap, cg.sourceSwap);
         });
@@ -187,66 +188,66 @@ cg.buildMinis = function(){
 cg.buildMinis();
 
 cg.createImage = function(url){
-	scene.image(url, function(obj){
-		obj.draggable = true;
-		obj.setXY(30, 30);
+    scene.image(url, function(obj){
+        obj.draggable = true;
+        obj.setXY(30, 30);
 
-		obj.onmousedown = function(e){
-			currentObj = obj;
-			scene.zIndex(obj, 1);
-			scene.update();
-		}
+        obj.onmousedown = function(e){
+            currentObj = obj;
+            scene.zIndex(obj, 1);
+            scene.update();
+        }
 
-		scene.add(obj);
-		currentObj = obj;
-		scene.update();
-		pop.play();
-	});
+        scene.add(obj);
+        currentObj = obj;
+        scene.update();
+        pop.play();
+    });
 }
 
 cg.createText = function(){
-	var txt = prompt("Adicione um texto:");
+    var txt = prompt("Adicione um texto:");
 
-	if(txt){
-		var obj = scene.text(txt, fontFamily, 26, 'black');
-		obj.setXY(40, 40);
-		obj.draggable = true;
+    if(txt){
+        var obj = scene.text(txt, fontFamily, 26, 'black');
+        obj.setXY(40, 40);
+        obj.draggable = true;
 
-		obj.onmousedown = function(e){
-			currentObj = obj;
-			scene.zIndex(obj, 1);
-			scene.update();
-		}
-		currentObj = obj;
+        obj.onmousedown = function(e){
+            currentObj = obj;
+            scene.zIndex(obj, 1);
+            scene.update();
+        }
+        currentObj = obj;
 
-		scene.add(obj);
-		scene.update();
-		pop.play();
-	}
+        scene.add(obj);
+        scene.update();
+        pop.play();
+    }
 }
 
 cg.createTextFromInput = function(e){
 
-	var key = e.keyCode || e.which;
-	var txt = \$('#newText').val();
+    var key = e.keyCode || e.which;
+    var txt = \$('#newText').val();
 
-	if(key == 13){
-		var obj = scene.text(txt, fontFamily, 26, 'black');
-		obj.setXY(40, 40);
-		obj.draggable = true;
+    if(key == 13){
+        var obj = scene.text(txt, fontFamily, 26, 'black');
+        obj.setXY(40, 40);
+        obj.draggable = true;
 
-		obj.onmousedown = function(e){
-			currentObj = obj;
-			scene.zIndex(obj, 1);
-			scene.update();
-		}
-		currentObj = obj;
+        obj.onmousedown = function(e){
+            currentObj = obj;
+            scene.zIndex(obj, 1);
+            scene.update();
+        }
+        currentObj = obj;
 
-		scene.add(obj);
-		scene.update();
-		\$('#newText').val('');
-		pop.play();
-	}
+        scene.add(obj);
+        scene.update();
+        \$('#newText').val('');
+        pop.play();
+    }
 }
 cg.createImageFromInput= function(t){
 
@@ -269,7 +270,7 @@ cg.createImageFromInput= function(t){
 
 }
 cg.saveImage = function(){
-	var data = c.toDataURL('png');
+    var data = c.toDataURL('png');
        // \$.ajax({
        //   type: 'POST',
        //   url: 'https://lut.im',
@@ -277,74 +278,74 @@ cg.saveImage = function(){
        //   success: function(d){console.log(d);},
        //   dataType: 'json'
        // });
-	var win = window.open();
-	var b = win.document.body;
-	var img = new Image();
-	img.src = data;
-	b.appendChild(img);
+    var win = window.open();
+    var b = win.document.body;
+    var img = new Image();
+    img.src = data;
+    b.appendChild(img);
 }
 
 cg.zoomOut = function(obj){
-	var w = obj.w * 0.05;
-	var h = obj.h * 0.05;
+    var w = obj.w * 0.05;
+    var h = obj.h * 0.05;
 
-	if(obj.w - w > 0 && obj.h - h > 0){
-		obj.w -= w;
-		obj.h -= h;
+    if(obj.w - w > 0 && obj.h - h > 0){
+        obj.w -= w;
+        obj.h -= h;
 
-		obj.x += (w/2);
-		obj.y += (h/2);
+        obj.x += (w/2);
+        obj.y += (h/2);
 
-		scene.update();
-	}
+        scene.update();
+    }
 }
 
 cg.zoomIn = function(obj){
-	var w = obj.w * 0.05;
-	var h = obj.h * 0.05;
+    var w = obj.w * 0.05;
+    var h = obj.h * 0.05;
 
-	obj.w += w;
-	obj.h += h;
+    obj.w += w;
+    obj.h += h;
 
-	obj.x -= (w/2);
-	obj.y -= (h/2);
+    obj.x -= (w/2);
+    obj.y -= (h/2);
 
-	scene.update();
+    scene.update();
 }
 
 cg.hFlip = function(obj){
-	var tmpCanvas = \$(obj.getCanvas()).clone()[0];
-	var img = obj.getCanvas();
-	var tmpCtx = tmpCanvas.getContext('2d');
-	var w = tmpCanvas.width;
-	var h = tmpCanvas.height;
+    var tmpCanvas = \$(obj.getCanvas()).clone()[0];
+    var img = obj.getCanvas();
+    var tmpCtx = tmpCanvas.getContext('2d');
+    var w = tmpCanvas.width;
+    var h = tmpCanvas.height;
 
-	//save current size and position
-	var cW = obj.w, cH = obj.h, cX = obj.x, cY = obj.y;
+    //save current size and position
+    var cW = obj.w, cH = obj.h, cX = obj.x, cY = obj.y;
 
-	tmpCtx.translate(w/2, h/2);
-	tmpCtx.scale(-1, 1);
-	tmpCtx.drawImage(img, (-1*w/2), (-1*h/2));
-	tmpCanvas.id = obj.getCanvas().id;
-	obj.getCanvas().id = 'killme';
+    tmpCtx.translate(w/2, h/2);
+    tmpCtx.scale(-1, 1);
+    tmpCtx.drawImage(img, (-1*w/2), (-1*h/2));
+    tmpCanvas.id = obj.getCanvas().id;
+    obj.getCanvas().id = 'killme';
 
-	RB.destroyCanvas('killme');
-	d.body.appendChild(tmpCanvas);
-	obj.setCanvas(tmpCanvas);
-	obj.x=cX; obj.y=cY; obj.h=cH; obj.w=cW;
-	scene.update();
+    RB.destroyCanvas('killme');
+    d.body.appendChild(tmpCanvas);
+    obj.setCanvas(tmpCanvas);
+    obj.x=cX; obj.y=cY; obj.h=cH; obj.w=cW;
+    scene.update();
 }
 
 cg.setScreen = function(w, h){
-	if(w && h && !isNaN(w) && !isNaN(h)){
-		//var ok = confirm('All your work will be lost. Continue?');
-		ok=true;
-		if(ok){
-			c.width = w;
-			c.height = h;
-			scene.update();
-			//cg.clearScreen();
-		}
-	}
+    if(w && h && !isNaN(w) && !isNaN(h)){
+        //var ok = confirm('All your work will be lost. Continue?');
+        ok=true;
+        if(ok){
+            c.width = w;
+            c.height = h;
+            scene.update();
+            //cg.clearScreen();
+        }
+    }
 }
 EOF
