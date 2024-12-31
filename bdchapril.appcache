@@ -3,15 +3,15 @@ CACHE MANIFEST
 # v7 - 20240831
 CACHE:
 index.html
-comicgen.js
+lib/comicgen.js
 estilo.css
 gege.css
-jquery-1.5.2.min.js
+lib/jquery-1.5.2.min.js
 images/banniere_bdchapril.png
 images/bg-tab.png
 sounds/pop.mp3
 sounds/pop.ogg
-ragaboom.min.js
+lib/ragaboom.min.js
     'toons/affirmatif.png',
     'toons/agace.png',
     'toons/ballon10.png',

@@ -4,7 +4,7 @@ use strict;
 use constant ROOT_DIR => "../";
 use constant DATA_FILES => (
     ROOT_DIR."comicgen.appcache",
-    ROOT_DIR."comicgen.js",
+    ROOT_DIR."lib/comicgen.js",
     ROOT_DIR."sw.js"
 );
 use constant LINES => (

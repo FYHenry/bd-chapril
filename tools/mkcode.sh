@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 # Code generator
-declare -r CG_PATH='../comicgen.js'
+declare -r CG_PATH='../lib/comicgen.js'
 declare -r SW_PATH='../sw.js'
 declare -r AC_PATH='../chapril.appcache'
 declare -r TOONS_DIR='../toons'
@@ -375,11 +375,11 @@ const cacheResources = [
     '/favicon.ico',
     '/manifest.json',
     '/bdchapril.css',
-    '/comicgen.js',
+    '/lib/comicgen.js',
     '/index.html',
-    '/jquery-1.5.2.min.js',
+    '/lib/jquery-1.5.2.min.js',
     '/sounds/pop.ogg',
-    '/ragaboom.min.js',
+    '/lib/ragaboom.min.js',
     '/images/banniere_bdchapril.png',
     '/images/bg-tab.png',
 EOF
@@ -448,15 +448,15 @@ CACHE MANIFEST
 # v7 - $( date "+%Y%M%d" )
 CACHE:
 index.html
-comicgen.js
+lib/comicgen.js
 estilo.css
 gege.css
-jquery-1.5.2.min.js
+lib/jquery-1.5.2.min.js
 images/banniere_bdchapril.png
 images/bg-tab.png
 sounds/pop.mp3
 sounds/pop.ogg
-ragaboom.min.js
+lib/ragaboom.min.js
 EOF
 
 for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
