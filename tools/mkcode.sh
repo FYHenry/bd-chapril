@@ -3,13 +3,15 @@
 declare -r CG_PATH='../comicgen.js'
 declare -r SW_PATH='sw_test.js'
 declare -r AC_PATH='comicgen_test.appcache'
-declare -r IMG_DIR='../toons'
-declare -a toon=()
+declare -r TOONS_DIR='../toons'
+declare -a toons=()
 declare -a minis=()
+declare -a sw_cache=()
 
-# mklist IMG_PATH
-function mklist()(
-    for file in "$1"/*.png
+# mk_img_list IMG_DIR
+function mk_img_list()(
+    local -r IMG_DIR="$1"
+    for file in "$IMG_DIR"/*.png
     do
         echo "$file"
     done | sort -d -
@@ -25,18 +27,20 @@ function wacg()(
     echo -e "    '${TBL[-1]}'">>${CG_PATH}
 )
 
-for file in $( mklist $IMG_DIR )
+## Preparing GC Code ##
+
+for file in $( mk_img_list $TOONS_DIR )
 do
     if [[ "$file" =~ ^.+_mini(\..+)? ]]
     then
         minis[${#minis[@]}]=$( basename "$file" )
     else
-        toon[${#toon[@]}]=$( basename "$file" )
+        toons[${#toons[@]}]=$( basename "$file" )
     fi
 done
 
 echo  -e "\nToons :"
-for file in "${toon[@]}"
+for file in "${toons[@]}"
 do
     echo "$file"
 done
@@ -74,7 +78,7 @@ var lib = \$('#lib');
 var miniUrls = [
 EOF
 
-wacg ${minis[@]}
+wacg "${minis[@]}"
 
 while read -r
 do
@@ -85,7 +89,7 @@ done <<EOF >>${CG_PATH}
 var toonUrls = [
 EOF
 
-wacg ${toon[@]}
+wacg "${toons[@]}"
 
 while read -r
 do
@@ -348,4 +352,88 @@ cg.setScreen = function(w, h){
         }
     }
 }
+EOF
+
+## Preparing SW Code ##
+
+sw_cache=( "${toons[@]}" "${minis[@]}" )
+
+echo  -e "\nNew cache :"
+for file in "${sw_cache[@]}"
+do
+    echo "$file"
+done
+
+## Writting SW code ##
+while read -r
+do
+    echo "$REPLY";
+done <<EOF >${SW_PATH}
+// Service Worker
+const cacheResources = [
+    '/',
+    '/favicon.ico',
+    '/manifest.json',
+    '/bdchapril.css',
+    '/comicgen.js',
+    '/index.html',
+    '/jquery-1.5.2.min.js',
+    '/sounds/pop.ogg',
+    '/ragaboom.min.js',
+    '/images/banniere_bdchapril.png',
+    '/images/bg-tab.png',
+EOF
+
+for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
+do
+    echo -e "    '/toons/${sw_cache[$nb]}',"
+done >>${SW_PATH}
+echo -e "    '/toons/${sw_cache[-1]}'">>${SW_PATH}
+
+while read -r
+do
+    echo "$REPLY";
+done <<EOF >>${SW_PATH}
+];
+
+const addResourcesToCache = async (cacheResources) => {
+    const cache = await caches.open('v1');
+    await cache.addAll(cacheResources);
+};
+
+const enableNavigationPreload = async () => {
+    if (self.registration.navigationPreload) {
+        // Enable navigation preloads!
+        await self.registration.navigationPreload.enable();
+    }
+};
+
+const putInCache = async (request, response) => {
+    const cache = await caches.open('v1');
+    await cache.put(request, response);
+};
+
+const cacheFirst = async (request) => {
+    const responseFromCache = await caches.match(request);
+    if (responseFromCache) {
+        return responseFromCache;
+    }
+    const responseFromNetwork = await fetch(request);
+    putInCache(request, responseFromNetwork.clone());
+    return responseFromNetwork;
+};
+
+self.addEventListener('activate', (event) => {
+    event.waitUntil(enableNavigationPreload());
+});
+
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        addResourcesToCache(cacheResources)
+    );
+});
+
+self.addEventListener('fetch', (event) => {
+    event.respondWith(cacheFirst(event.request));
+});
 EOF
