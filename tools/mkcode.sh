@@ -2,7 +2,7 @@
 # Code generator
 declare -r CG_PATH='../lib/comicgen.js'
 declare -r SW_PATH='../sw.js'
-declare -r AC_PATH='../chapril.appcache'
+declare -r AC_PATH='../bdchapril.appcache'
 declare -r TOONS_DIR='../toons'
 declare -a toons=()
 declare -a minis=()
