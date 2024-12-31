@@ -49,3 +49,13 @@ cd ../
 L’installation de [Rustup](https://rustup.rs/) est recommandée pour compiler des applications en Rust.
 
 Reste à lancer le serveur via `./sws/static-web-server -w sws/config.toml` et à accéder à l’application Web via l’URL `http://localhost:3000/index.html`.
+
+## Images
+
+Pour mettre à jour les images disponibles placer les images dans `toons/`.
+Chaque image `${IMG}.png` doit être associée à une miniature `${IMG}_mini.png` de 60×60 pixels.
+Puis exécuter cette commande :
+```bash
+( cd tools/; bash mkcode.sh )
+```
+Ainsi les scripts sont à jour.

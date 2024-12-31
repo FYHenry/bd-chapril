@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 # Code generator
 declare -r CG_PATH='../comicgen.js'
-declare -r SW_PATH='sw_test.js'
-declare -r AC_PATH='comicgen_test.appcache'
+declare -r SW_PATH='../sw.js'
+declare -r AC_PATH='../comicgen.appcache'
 declare -r TOONS_DIR='../toons'
 declare -a toons=()
 declare -a minis=()
@@ -436,4 +436,41 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
     event.respondWith(cacheFirst(event.request));
 });
+EOF
+
+## Writting SW code ##
+while read -r
+do
+    echo "$REPLY";
+done <<EOF >${AC_PATH}
+CACHE MANIFEST
+
+# v7 - $( date "+%Y%M%d" )
+CACHE:
+index.html
+comicgen.js
+estilo.css
+gege.css
+jquery-1.5.2.min.js
+images/banniere_bdchapril.png
+images/bg-tab.png
+sounds/pop.mp3
+sounds/pop.ogg
+ragaboom.min.js
+EOF
+
+for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
+do
+    echo -e "    'toons/${sw_cache[$nb]}',"
+done >>${AC_PATH}
+echo -e "    'toons/${sw_cache[-1]}'">>${AC_PATH}
+
+while read -r
+do
+    echo "$REPLY";
+done <<EOF >>${AC_PATH}
+NETWORK:
+
+FALLBACK:
+/ index.html .
 EOF
