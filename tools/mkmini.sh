@@ -4,13 +4,17 @@ for file in ../toons/*.png
 do
     if [[ ! "$file" =~ ^.+_mini\.png && "$file" =~ ^.+\.png ]]
     then
-        mini=$( echo $file | sed -E "s/^(.+).png/\1_mini.png/")
+        mini=$( echo "$file" | sed -E "s/^(.+).png/\1_mini.png/")
+        if [ -f "$mini" ]
+        then
+            continue
+        fi
         echo "${file} => ${mini}"
-        #convert grisbouille0$i.png \
-        #    -background none \
-        #    -gravity center \
-        #    -resize 60x60 \
-        #    -extent 60x60 \
-        #    grisbouille0$i_mini.png
+        convert "$file" \
+            -background none \
+            -gravity center \
+            -resize 60x60 \
+            -extent 60x60 \
+            "$mini"
     fi
 done

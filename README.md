@@ -54,6 +54,11 @@ Reste à lancer le serveur via `./sws/static-web-server -w sws/config.toml` et �
 
 Pour mettre à jour les images disponibles placer les images dans `toons/`.
 Chaque image `${IMG}.png` doit être associée à une miniature `${IMG}_mini.png` de 60×60 pixels.
+Pour se faire exécuter cette commande :
+```bash
+( cd tools/; bash mkmini.sh )
+```
+
 Puis exécuter cette commande :
 ```bash
 ( cd tools/; bash mkcode.sh )
