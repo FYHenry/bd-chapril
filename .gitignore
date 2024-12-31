@@ -7,3 +7,8 @@ toons/*_mini.png
 
 # Tools tests
 tools/*_test*
+
+# JQuery
+lib/jquery-*.js
+lib/jquery-*.min.map
+!lib/jquery-*.min.js
