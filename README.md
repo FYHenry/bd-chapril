@@ -2,13 +2,36 @@
 
 Un ancien générateur de BD qui a bien vieilli.
 
+## Contraintes
+
+Le lecteur doit être averti que cette bifurcation du projet ComicGen est développé dans une distribution de GNU/Linux.
+L’environnement de travail nécessite l’installation du paquetage `imagemagick` dont dépend `tools/mkmini.sh`.
+
+## Installation
+
+Une fois le dépôt téléchargé les données doivent être construites avant le déploiement.
+Pour se faire toutes les images doivent être placées dans `toons/`.
+Chaque image `${IMG}.png` doit être associée à une miniature `${IMG}_mini.png` de 60×60 pixels.
+
+Les miniatures sont générées via cette commande :
+```bash
+( cd tools/; bash mkmini.sh )
+```
+
+Reste la création des fichiers de donnée par cette commande :
+```bash
+( cd tools/; bash mkcode.sh )
+```
+
+Quand on change le contenu de `toons/` ces deux commandes doivent être éxécutées.
+
 ## Démonstration
 
 Site : [https://bd.chapril.org/](https://bd.chapril.org/)
 
 ## Paternité
 
-Auteurs : Willian Carvalho (willianpc) et Gee Ptilouk.
+Auteurs : Willian Carvalho (willianpc) et [Gee](https://forge.april.org/gee).
 
 Dépôts des projets :
 * Comicgen : [https://github.com/willianpc/comicgen](https://github.com/willianpc/comicgen) ;
@@ -16,14 +39,12 @@ Dépôts des projets :
 
 Article : [https://hacks.mozilla.org/2012/12/comic-gen-a-canvas-run-comic-generator/](https://hacks.mozilla.org/2012/12/comic-gen-a-canvas-run-comic-generator/).
 
-## Obsolète
+## Gestion des caches
 
-*Application Cache* est supprimée de l’ECMAScript.
-Trace de l’API Web : [https://web.dev/articles/appcache-beginner](https://web.dev/articles/appcache-beginner)
+Initialement le cache était géré par l’API Application Cache.
+Cette API ayant été dépréciée puis obsolète, un *service worker* (`sw.js`) a pris le relai.
 
-## Nouveau cache
-
-Un *Service Worker* `sw.js` gère les caches.
+Pour les curieux un article sur l’Application Cache : [https://web.dev/articles/appcache-beginner](https://web.dev/articles/appcache-beginner)
 
 ## Développement
 
@@ -58,19 +79,3 @@ Pour ne pas alourdir le dépôt la forme développée de JQuery est à télécha
 Pour ce faire deux fichiers peuvent être téléchargée dans `lib/` :
 * Le [code source](https://code.jquery.com/jquery-3.7.1.js) ;
 * La [cartographie](https://code.jquery.com/jquery-3.7.1.min.map).
-
-
-## Images
-
-Pour mettre à jour les images disponibles placer les images dans `toons/`.
-Chaque image `${IMG}.png` doit être associée à une miniature `${IMG}_mini.png` de 60×60 pixels.
-Pour se faire exécuter cette commande :
-```bash
-( cd tools/; bash mkmini.sh )
-```
-
-Puis exécuter cette commande :
-```bash
-( cd tools/; bash mkcode.sh )
-```
-Ainsi les scripts sont à jour.
