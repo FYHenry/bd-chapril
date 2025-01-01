@@ -7,6 +7,7 @@ sws/.crates*
 # Installation stage
 toons/*_mini.png
 data/*
+data/swcache.json
 
 # JQuery
 lib/jquery-*.js
