@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # Code generator
 declare -r CG_PATH='../lib/comicgen.js'
-declare -r SW_PATH='../sw.js'
+declare -r SW_PATH='../data/swcache.json'
 declare -r AC_PATH='../bdchapril.appcache'
 declare -r TOONS_DIR='../toons'
 declare -a toons=()
@@ -369,73 +369,31 @@ while read -r
 do
     echo "$REPLY";
 done <<EOF >${SW_PATH}
-// Service Worker
-const cacheResources = [
-    '/',
-    '/favicon.ico',
-    '/manifest.json',
-    '/bdchapril.css',
-    '/lib/comicgen.js',
-    '/index.html',
-    '/lib/jquery-1.5.2.min.js',
-    '/sounds/pop.ogg',
-    '/lib/ragaboom.min.js',
-    '/images/banniere_bdchapril.png',
-    '/images/bg-tab.png',
+[
+    "/",
+    "/favicon.ico",
+    "/manifest.json",
+    "/bdchapril.css",
+    "/lib/comicgen.js",
+    "/index.html",
+    "/lib/jquery-3.7.1.min.js",
+    "/sounds/pop.ogg",
+    "/lib/ragaboom.min.js",
+    "/images/banniere_bdchapril.png",
+    "/images/bg-tab.png",
 EOF
 
 for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
 do
-    echo -e "    '/toons/${sw_cache[$nb]}',"
+    echo -e "    \"/toons/${sw_cache[$nb]}\","
 done >>${SW_PATH}
-echo -e "    '/toons/${sw_cache[-1]}'">>${SW_PATH}
+echo -e "    \"/toons/${sw_cache[-1]}\"">>${SW_PATH}
 
 while read -r
 do
     echo "$REPLY";
 done <<EOF >>${SW_PATH}
-];
-
-const addResourcesToCache = async (cacheResources) => {
-    const cache = await caches.open('v1');
-    await cache.addAll(cacheResources);
-};
-
-const enableNavigationPreload = async () => {
-    if (self.registration.navigationPreload) {
-        // Enable navigation preloads!
-        await self.registration.navigationPreload.enable();
-    }
-};
-
-const putInCache = async (request, response) => {
-    const cache = await caches.open('v1');
-    await cache.put(request, response);
-};
-
-const cacheFirst = async (request) => {
-    const responseFromCache = await caches.match(request);
-    if (responseFromCache) {
-        return responseFromCache;
-    }
-    const responseFromNetwork = await fetch(request);
-    putInCache(request, responseFromNetwork.clone());
-    return responseFromNetwork;
-};
-
-self.addEventListener('activate', (event) => {
-    event.waitUntil(enableNavigationPreload());
-});
-
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        addResourcesToCache(cacheResources)
-    );
-});
-
-self.addEventListener('fetch', (event) => {
-    event.respondWith(cacheFirst(event.request));
-});
+]
 EOF
 
 ## Writting SW code ##
@@ -449,9 +407,8 @@ CACHE MANIFEST
 CACHE:
 index.html
 lib/comicgen.js
-estilo.css
-gege.css
-lib/jquery-1.5.2.min.js
+bdchapril.css
+lib/jquery-3.7.1.min.js
 images/banniere_bdchapril.png
 images/bg-tab.png
 sounds/pop.mp3
