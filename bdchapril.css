@@ -249,6 +249,7 @@ text-decoration: underline;
 {
   background-color:white;
   position: fixed;
+  display: none;
 
 }
 #newWidth, #newHeight{
