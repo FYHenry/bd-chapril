@@ -223,6 +223,7 @@ padding: 0;
 footer
 {
 margin-top: 10px;
+margin-left: 244px;
 width: 100%;
 text-align: center;
 color: #444444;
@@ -266,4 +267,9 @@ display : inline;
 
 input.file {
   display:none;
+}
+
+.keySymbol {
+  width: 1rem;
+  height: auto;
 }
