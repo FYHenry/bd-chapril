@@ -1,78 +1,103 @@
 <!doctype html>
 <html lang="fr" manifest="data/bdchapril.appcache">
-
     <head>
         <meta charset="utf-8"/>
-        <meta name="description" content="Un générateur de BD" />
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="bdchapril.css" />
-        <link rel="manifest" href="manifest.json" />
-        <title>BD Chapril, générateur de BD de l'April</title>
+        <meta name="description" content="Un générateur de BD"/>
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href="bdchapril.css"/>
+        <link rel="manifest" href="manifest.json"/>
+        <title>BD Chapril, générateur de BD de l’April</title>
     </head>
-
     <body>
-
         <!-- ajout conteneur global -->
         <div id="wrapper">
-            <div id="focusImg"><img id="bigImg" />
+            <div id="focusImg">
+                <img id="bigImg"/>
             </div>
             <!-- tableau de bord -->
-
             <div id="tableauDeBord">
                 <div id="menuContainer">
-                    <h1><span class="hidden">BD Chapril</span><img id="logo" src="images/banniere_bdchapril.png" width="230"
-                            height="162" alt="Banniere du générateur"></h1>
-                    <p class="hidden">Générateur de BD de l'April</p>
+                    <h1>
+                        <span class="hidden">BD Chapril</span>
+                        <img id="logo"
+                                src="images/banniere_bdchapril.png"
+                                width="230"
+                                height="162" 
+                                alt="Banniere du générateur">
+                    </h1>
+                    <p class="hidden">Générateur de BD de l’April</p>
                     <div id="lib" class="rc">
-                        <div><label for="newText"><span class="hidden">Saisissez votre bulle</span></label> <input
-                                type="text" id="newText" placeholder="Saisissez votre bulle"/></div>
+                        <div>
+                            <label for="newText">
+                                <span class="hidden">Saisissez votre bulle</span>
+                            </label>
+                            <input type="text"
+                                    id="newText"
+                                    placeholder="Saisissez votre bulle"/>
+                        </div>
                         <div class="upload">
-                            <input type="file" accept="image/*" id="imageFileInput" class="file" multiple/>
-                            <h2 class="save"><a id="uploadSave" href="#" title="Importer une ou plusieurs images">Importer une image</a></h2>
+                            <input type="file"
+                                    accept="image/*"
+                                    id="imageFileInput"
+                                    class="file"
+                                    multiple/>
+                            <h2 class="save">
+                                <a id="uploadSave"
+                                        href="#"
+                                        title="Importer une ou plusieurs images">Importer une image</a>
+                            </h2>
                         </div>
                     </div>
                 </div>
-
                 <div id="hiddenObjs">
-                    <div id="textTool" class="rc mini textTool" title="Ajouter du texte">T</div>
+                    <div id="textTool"
+                            class="rc mini textTool"
+                            title="Ajouter du texte">T</div>
                     <div id="instructs" class="rc instructions">
                         <h2>Instructions</h2>
                         <ul>
-                            <li><em>Flêche bas</em>: rétrécir</li>
-                            <li><em>Flêche haut</em>: agrandir</li>
-                            <li><em>Gauche/Droite</em>: retournement horizontal</li>
-                            <li><em>Del</em>: effacer l'objet</li>
+                            <li><em>Flèche bas/roulette haut</em>: rétrécir</li>
+                            <li><em>Flèche haut/roulette bas</em>: agrandir</li>
+                            <li><em>Flèche Gauche/Droite</em>: retournement horizontal</li>
+                            <li><em>Touche Supprimer</em>: effacer l’objet</li>
                         </ul>
-
                     </div>
                 </div>
                 <div id="toolbar" class="rcBottom">
-
-                    <h2 class="save"><a id="toolbarImageSave" href="#" title="Enregistrer l’image">Enregistrer votre
-                            image</a></h2>
+                    <h2 class="save">
+                        <a id="toolbarImageSave"
+                                href="#"
+                                title="Enregistrer l’image">Enregistrer votre image</a>
+                    </h2>
                     <h2 class="last">Redimensionner la fenêtre</h2>
-                    <br />
-                    <p> <input type="text" id="newWidth" placeholder="Largeur" /> x <input type="text" id="newHeight"
-                            placeholder="Hauteur" /> </p>
-                    <br />
-                    <h2 class="save"><a id="resizeCanvas" href="#" class="save">Redimensionner</a> </h2>
+                    <br/>
+                    <p><input type="text"
+                            id="newWidth"
+                            placeholder="Largeur"/> x <input type="text"
+                            id="newHeight"
+                            placeholder="Hauteur"/></p>
+                    <br/>
+                    <h2 class="save">
+                        <a id="resizeCanvas"
+                        href="#"
+                        class="save">Redimensionner</a>
+                    </h2>
                 </div>
             </div>
             <!-- fin tableau de bord -->
-
             <div id="cscreen">
-                <canvas class="rc" id="c" crossorigin="anonymous" width="800" height="600" tabindex=0>
-                    Le générateur du GKND a besoin d'un navigateur récent et de javascript pour fonctionner.
+                <canvas class="rc"
+                        id="c"
+                        crossorigin="anonymous"
+                        width="800"
+                        height="600"
+                        tabindex=0>
+                    <p>Le générateur du GKND a besoin d'un navigateur récent et de javascript pour fonctionner.</p>
                 </canvas>
             </div>
             <footer>
-                <p>Les dessins sont l'œuvre de <a href="https://ptilouk.net"><em>Gee</em></a> et sont diffusés sous
-                        licence Creative Commons By-Sa.<br />
-                        <em>BD Chapril</em> est une adaptation de <a href="https://framalab.org/gknd-creator/">GéGé</a>,
-                        lui-même une adaptation de <a href="https://github.com/willianpc/comicgen"
-                            title="Code source de l'auteur original sur Github">Comic Gen de Willian Carvalho</a> réalisée
-                        par Cyrille Largillier pour <a href="https://framasoft.org/"
-                            title="Vous ne connaissez pas encore Framasoft ?">Framasoft</a>.</p>
+                <p>Les dessins sont l'œuvre de <a href="https://ptilouk.net/"><em>Gee</em></a> et sont diffusés sous licence Creative Commons By-Sa.</p>
+                <p><em>BD Chapril</em> est une adaptation de <a href="https://framalab.org/gknd-creator/">GéGé</a>, lui-même une adaptation de <a href="https://github.com/willianpc/comicgen" title="Code source de l'auteur original sur Github">Comic Gen de Willian Carvalho</a> réalisée par Cyrille Largillier pour <a href="https://framasoft.org/" title="Vous ne connaissez pas encore Framasoft ?">Framasoft</a>.</p>
             </footer>
             <script type="module" src="bdchapril.js" async="true"></script>
             <script type="text/javascript" src="lib/jquery-3.7.1.min.js"></script>
@@ -81,5 +106,4 @@
             <script type="text/javascript" src="lib/comicgen.js"></script>
         </div>
     </body>
-
 </html>

@@ -231,7 +231,8 @@ padding-bottom: 10px;
 
 footer p
 {
-display: inline;
+display: block;
+text-align: justify;
 }
 
 footer a
