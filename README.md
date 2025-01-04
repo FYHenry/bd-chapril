@@ -20,7 +20,7 @@ Les miniatures sont générées via cette commande :
 
 Reste la création des fichiers de donnée par cette commande :
 ```bash
-( cd tools/; bash mkcode.sh )
+( cd tools/; bash mkdata.sh )
 ```
 
 Quand on change le contenu de `toons/` ces deux commandes doivent être éxécutées.
