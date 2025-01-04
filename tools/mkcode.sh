@@ -39,17 +39,6 @@ do
     fi
 done
 
-echo  -e "\nToons :"
-for file in "${toons[@]}"
-do
-    echo "$file"
-done
-echo -e "\nMinis :"
-for file in "${minis[@]}"
-do
-    echo "$file"
-done
-
 ## Writting GC code ##
 while read -r
 do
@@ -111,6 +100,13 @@ done <<EOF >${SW_PATH}
     "/lib/ragaboom.min.js",
     "/images/banniere_bdchapril.png",
     "/images/bg-tab.png",
+    "/images/delete.svg",
+    "/images/mouse-wheel-down.svg",
+    "/images/mouse-wheel-up.svg",
+    "/images/square-arrow-down.svg",
+    "/images/square-arrow-left.svg",
+    "/images/square-arrow-right.svg",
+    "/images/square-up-right.svg",
 EOF
 
 for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
@@ -141,6 +137,13 @@ bdchapril.css
 lib/jquery-3.7.1.min.js
 images/banniere_bdchapril.png
 images/bg-tab.png
+images/delete\svg
+images/mouse-wheel-down\svg
+images/mouse-wheel-up\svg
+images/square-arrow-down\svg
+images/square-arrow-left\svg
+images/square-arrow-right\svg
+images/square-up-right\svg
 sounds/pop.mp3
 sounds/pop.ogg
 lib/ragaboom.min.js
