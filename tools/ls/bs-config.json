@@ -1,0 +1,11 @@
+{
+    "ui": false,
+    "listen": "localhost",
+    "port": 3000,
+    "open": false,
+    "startPath": "index.html",
+    "server": {
+        "baseDir": "../../",
+        "index": "index.html"
+    }
+}

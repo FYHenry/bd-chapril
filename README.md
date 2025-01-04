@@ -54,28 +54,39 @@ Pour les curieux un article sur l’Application Cache : [https://web.dev/article
 
 L’environnement de développement comprend le paquet Node `lite-server`.
 Ainsi la partie Node du projet n’est pas nécessaire au déploiement en production.
-Il suffit de lancer `npx serve` pour essayer localement l’application.
 
-Le fichier `bs-config.json` se charge de paramétrer le serveur local selon les options de [BrowserSync](https://browsersync.io/docs/options "Site Web").
+L’outil est installé comme suit :
+```bash
+( cd tools/ls/; npm install )
+```
+
+Pour essayer localement l’application on passe par cette commande :
+```bash
+( cd tools/ls/; npm run serve )
+```
+
+Un onglet nouveau apparaît alors dans le navigateur Web par défaut.
+
+Le fichier `tools/ls/bs-config.json` se charge de paramétrer le serveur local selon les options de [BrowserSync](https://browsersync.io/docs/options "Site Web").
 
 #### Via Static Web Server
 
 Une solution alternative est [Static Web Server](https://static-web-server.net/ "Site Web"). Ce petit serveur de site statique de 8 Mio peut être installé comme suit.
 
 ```bash
-cd sws
+cd tools/sws/
 cargo install --root ./ static-web-server
 mv bin/static-web-server ./
 rmdir bin/
-cd ../
+cd ../../
 ```
 L’installation de [Rustup](https://rustup.rs/) est recommandée pour compiler des applications en Rust.
 
-Reste à lancer le serveur via `./sws/static-web-server -w sws/config.toml` et à accéder à l’application Web via l’URL `http://localhost:3000/index.html`.
+Reste à lancer le serveur via `./tools/sws/static-web-server -w tools/sws/config.toml` et à accéder à l’application Web via l’URL `http://localhost:3000/index.html`.
 
 ### Déboguer avec [JQuery](https://jquery.com/)
 
 Pour ne pas alourdir le dépôt la forme développée de JQuery est à télécharger pour le déboguage.
-Pour ce faire deux fichiers peuvent être téléchargée dans `lib/` :
+Pour ce faire deux fichiers peuvent être téléchargés dans `lib/` :
 * Le [code source](https://code.jquery.com/jquery-3.7.1.js) ;
 * La [cartographie](https://code.jquery.com/jquery-3.7.1.min.map).

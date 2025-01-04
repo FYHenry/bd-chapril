@@ -1,8 +1,9 @@
 # Development tools
 node_modules/
+tools/ls/node_modules/
 package-lock.json
-sws/static-web-server
-sws/.crates*
+tools/sws/static-web-server
+tools/sws/.crates*
 
 # Installation stage
 toons/*_mini.png

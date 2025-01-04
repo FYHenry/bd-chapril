@@ -1,7 +1,7 @@
 {
-  "name": "bd-chapril",
+  "name": "bd-chapril-ls",
   "version": "1.1.0",
-  "description": "BD service of Chapril",
+  "description": "BD service of Chapril — Lite Server",
   "scripts": {
     "serve": "lite-server ./index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
