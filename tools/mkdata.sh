@@ -42,7 +42,7 @@ done
 ## Writting GC code ##
 while read -r
 do
-    echo "$REPLY";
+    echo "$REPLY"
 done <<EOF >${CG_PATH}
 // CG Data
 /** Comicgen data */
@@ -55,7 +55,7 @@ wacg "${minis[@]}"
 
 while read -r
 do
-    echo "$REPLY";
+    echo "$REPLY"
 done <<EOF >>${CG_PATH}
     ],
     /** Toon URLs */
@@ -66,7 +66,7 @@ wacg "${toons[@]}"
 
 while read -r
 do
-    echo "$REPLY";
+    echo "$REPLY"
 done <<EOF >>${CG_PATH}
     ]
 };
@@ -86,7 +86,7 @@ done
 ## Writting SW code ##
 while read -r
 do
-    echo "$REPLY";
+    echo "$REPLY"
 done <<EOF >${SW_PATH}
 [
     "/",
@@ -117,7 +117,7 @@ echo -e "    \"/toons/${sw_cache[-1]}\"">>${SW_PATH}
 
 while read -r
 do
-    echo "$REPLY";
+    echo "$REPLY"
 done <<EOF >>${SW_PATH}
 ]
 EOF
@@ -125,7 +125,7 @@ EOF
 ## Writting SW code ##
 while read -r
 do
-    echo "$REPLY";
+    echo "$REPLY"
 done <<EOF >${AC_PATH}
 CACHE MANIFEST
 
@@ -157,7 +157,7 @@ echo -e "    'toons/${sw_cache[-1]}'">>${AC_PATH}
 
 while read -r
 do
-    echo "$REPLY";
+    echo "$REPLY"
 done <<EOF >>${AC_PATH}
 NETWORK:
 
