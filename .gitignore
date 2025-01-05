@@ -10,6 +10,9 @@ toons/*_mini.png
 data/*
 data/swcache.json
 
+# Ragaboom
+lib/ragaboom.js
+
 # JQuery
 lib/jquery-*.js
 lib/jquery-*.min.map
