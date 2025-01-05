@@ -23,6 +23,11 @@ Reste la création des fichiers de donnée par cette commande :
 ( cd tools/; bash mkdata.sh )
 ```
 
+Une dernière étape consiste à copier la charge utile dans un répertoire `dist/` à déployer pour un site Web statique :
+```bash
+( cd tools/; bash mkdist.sh )
+```
+
 Quand on change le contenu de `toons/` ces deux commandes doivent être éxécutées.
 
 ## Démonstration
