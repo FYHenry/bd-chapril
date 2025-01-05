@@ -4,9 +4,11 @@ declare -r CG_PATH='../data/cgdata.js'
 declare -r SW_PATH='../data/swcache.json'
 declare -r AC_PATH='../data/bdchapril.appcache'
 declare -r TOONS_DIR='../toons'
+declare -r IMAGES_DIR='../images'
 declare -a toons=()
 declare -a minis=()
 declare -a sw_cache=()
+declare -a images=()
 
 # mk_img_list IMG_DIR
 function mk_img_list()(
@@ -26,6 +28,11 @@ function wacg()(
     done >>${CG_PATH}
     echo -e "        '${TBL[-1]}'">>${CG_PATH}
 )
+
+for file in ${IMAGES_DIR}/*
+do
+    images[${#images[@]}]=$( basename "$file" )
+done
 
 ## Preparing GC Code ##
 
@@ -77,12 +84,6 @@ EOF
 
 sw_cache=( "${toons[@]}" "${minis[@]}" )
 
-echo  -e "\nNew cache :"
-for file in "${sw_cache[@]}"
-do
-    echo "$file"
-done
-
 ## Writting SW code ##
 while read -r
 do
@@ -92,22 +93,18 @@ done <<EOF >${SW_PATH}
     "/",
     "/favicon.ico",
     "/manifest.json",
-    "/bdchapril.css",
+    "/styles/chapril-banner.css",
+    "/styles/bdchapril.css",
     "/lib/comicgen.js",
     "/index.html",
     "/lib/jquery.min.js",
     "/sounds/pop.ogg",
     "/lib/ragaboom.min.js",
-    "/images/banniere_bdchapril.png",
-    "/images/bg-tab.png",
-    "/images/delete.svg",
-    "/images/mouse-wheel-down.svg",
-    "/images/mouse-wheel-up.svg",
-    "/images/square-arrow-down.svg",
-    "/images/square-arrow-left.svg",
-    "/images/square-arrow-right.svg",
-    "/images/square-up-right.svg",
 EOF
+for img in ${images[@]}
+do
+    echo -e "    \"/images/${img}\","
+done >>${SW_PATH}
 
 for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
 do
@@ -133,27 +130,22 @@ CACHE MANIFEST
 CACHE:
 index.html
 lib/comicgen.js
-bdchapril.css
+styles/bdchapril.css
 lib/jquery.min.js
-images/banniere_bdchapril.png
-images/bg-tab.png
-images/delete\svg
-images/mouse-wheel-down\svg
-images/mouse-wheel-up\svg
-images/square-arrow-down\svg
-images/square-arrow-left\svg
-images/square-arrow-right\svg
-images/square-up-right\svg
-sounds/pop.mp3
 sounds/pop.ogg
 lib/ragaboom.min.js
 EOF
 
+for img in ${images[@]}
+do
+    echo -e "images/${img}"
+done >>${AC_PATH}
+
 for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
 do
-    echo -e "    'toons/${sw_cache[$nb]}',"
+    echo -e "toons/${sw_cache[$nb]}"
 done >>${AC_PATH}
-echo -e "    'toons/${sw_cache[-1]}'">>${AC_PATH}
+echo -e "toons/${sw_cache[-1]}">>${AC_PATH}
 
 while read -r
 do

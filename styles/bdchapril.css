@@ -1,18 +1,18 @@
 body{
 font-family: "Domestic Manners", serif;
 background-color: #EEEEEE;
-background-image: url(images/bg-tab.png);		
+background-image: url(../images/bg-tab.png);		
 font-size:12px;
 margin:0px;
 }
 
 @font-face {
     font-family: 'Domestic Manners';
-    src: url('font/domestic_manners-webfont.eot');
-    src: url('font/domestic_manners-webfont.eot?#iefix') format('embedded-opentype'),
-         url('font/domestic_manners-webfont.woff') format('woff'),
-         url('font/domestic_manners-webfont.ttf') format('truetype'),
-         url('font/domestic_manners-webfont.svg#domestic_mannersregular') format('svg');
+    src: url('../font/domestic_manners-webfont.eot');
+    src: url('../font/domestic_manners-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/domestic_manners-webfont.woff') format('woff'),
+         url('../font/domestic_manners-webfont.ttf') format('truetype'),
+         url('../font/domestic_manners-webfont.svg#domestic_mannersregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -272,4 +272,14 @@ input.file {
 .keySymbol {
   width: 1rem;
   height: auto;
+}
+
+body header {
+  margin-top: 0;
+  padding-top: 42px !important;
+}
+
+.chapril-banniere-Nav a, .chapril-banniere-Nav a:visited {
+  color: #fff;
+  text-decoration: none;
 }

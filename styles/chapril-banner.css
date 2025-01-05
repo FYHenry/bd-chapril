@@ -1,0 +1,162 @@
+/*
+  ____ _                      _ _   _                                    ____ ____ ____  
+ / ___| |__   __ _ _ __  _ __(_) | | |__   __ _ _ __  _ __   ___ _ __   / ___/ ___/ ___| 
+| |   | '_ \ / _` | '_ \| '__| | | | '_ \ / _` | '_ \| '_ \ / _ \ '__| | |   \___ \___ \ 
+| |___| | | | (_| | |_) | |  | | | | |_) | (_| | | | | | | |  __/ |    | |___ ___) |__) |
+ \____|_| |_|\__,_| .__/|_|  |_|_| |_.__/ \__,_|_| |_|_| |_|\___|_|     \____|____/____/ 
+                  |_|                                                 
+*/
+
+
+/********************************
+ * Ajustement global
+ *******************************/
+
+body {
+   margin-top: 0;
+   padding-top: 42px !important;
+}
+
+
+/********************************
+ * Classes .chapril-banniere-
+ *******************************/
+
+.chapril-banniere-Entree {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-size: small;
+}
+
+.chapril-banniere-Logo {
+    display: flex;
+}
+
+.chapril-banniere-Logo a {
+    padding-bottom: 4px;
+}
+
+.chapril-banniere-Logo img {
+    display: block;
+    width: auto;
+    height: 28px;    
+}
+
+.chapril-banniere-Menu {
+    display: none;
+}
+
+.chapril-banniere-Nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 42px;
+    background-color: #005184;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1001;
+}
+
+.chapril-banniere-Nav a, .chapril-banniere-Nav a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+.chapril-banniere-Nav a:hover {
+    color: #ff9759;
+}
+
+
+@media screen and (max-width: 800px) {
+    
+    .chapril-banniere-Entree {
+        display: none;
+    }
+    
+    .chapril-banniere-Logo {
+        padding-left: 12px;
+    }
+    
+    .chapril-banniere-Logo a {
+        padding-top: 5px;
+    }
+        
+    .chapril-banniere-Menu {
+        display: block;
+    }
+    
+    .chapril-banniere-Menu summary {
+        height: 26px;
+        width: 30px;
+        display: block;
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        border-radius: 2px;
+        border-style: solid;
+        border-width: 1px;
+        box-sizing: border-box;
+        border-color: #fff;
+        padding-left: 4px;
+        padding-top: 1px;
+    }
+    
+    .chapril-banniere-Menu summary {
+        list-style: none;
+    }
+    
+    .chapril-banniere-Menu summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .chapril-banniere-Menu summary span {
+        display: block;
+        margin-top: 4px;
+        width: 20px;
+        height: 2px;
+        border-radius: 2px;
+        background-color: #fff;
+    }
+    
+    .chapril-banniere-Menu summary:hover {
+        border-color: #ff9759;
+        cursor:pointer;
+    }
+    
+    .chapril-banniere-Menu summary:hover span {
+        background-color: #ff9759;
+    }
+    
+    .chapril-banniere-Menu div {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        text-align: center;
+        background-color: #153a6a;
+        border-top: 1px solid #005184;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        font-size: small;
+    }
+    
+    .chapril-banniere-Nav {
+        display: block;
+    }    
+    
+}
+
+
+/************************************
+ * Adaptation pour certains services
+ ************************************
+
+/* Dokuwiki. */
+#dokuwiki__usertools {
+    top: 43px !important;
+}
+
+/* PAD. */
+#editorcontainerbox {
+    top: 43px !important;
+}

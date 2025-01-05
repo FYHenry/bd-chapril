@@ -5,7 +5,7 @@ then
     mkdir "$DIST"
 fi
 cp -ur '../data' '../font' "${DIST}/"
-for subdir in images lib sounds toons
+for subdir in images lib sounds toons styles
 do
     if [ ! -d  "${DIST}/${subdir}" ]
     then
@@ -16,8 +16,8 @@ cp -u ../images/*.{png,svg} "${DIST}/images/"
 cp -u ../lib/{comicgen,jquery.min,ragaboom.min}.js "${DIST}/lib/"
 cp -u ../sounds/pop.ogg "${DIST}/sounds/"
 cp -u ../toons/*.png "${DIST}/toons/"
-cp -u ../bdchapril.css \
-        ../bdchapril.js \
+cp -u ../styles/*.css "${DIST}/styles/"
+cp -u ../bdchapril.js \
         ../favicon.ico \
         ../index.html \
         ../manifest.json \
