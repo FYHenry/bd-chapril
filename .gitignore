@@ -14,9 +14,9 @@ data/swcache.json
 lib/ragaboom.js
 
 # JQuery
-lib/jquery-*.js
-lib/jquery-*.min.map
-!lib/jquery-*.min.js
+lib/jquery*.js
+lib/jquery*.min.map
+!lib/jquery*.min.js
 
 # Production
 dist/**

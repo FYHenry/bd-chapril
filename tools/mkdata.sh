@@ -95,7 +95,7 @@ done <<EOF >${SW_PATH}
     "/bdchapril.css",
     "/lib/comicgen.js",
     "/index.html",
-    "/lib/jquery-3.7.1.min.js",
+    "/lib/jquery.min.js",
     "/sounds/pop.ogg",
     "/lib/ragaboom.min.js",
     "/images/banniere_bdchapril.png",
@@ -134,7 +134,7 @@ CACHE:
 index.html
 lib/comicgen.js
 bdchapril.css
-lib/jquery-3.7.1.min.js
+lib/jquery.min.js
 images/banniere_bdchapril.png
 images/bg-tab.png
 images/delete\svg

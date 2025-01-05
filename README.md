@@ -87,9 +87,12 @@ Reste à lancer le serveur via `./tools/sws/static-web-server -w tools/sws/confi
 ### Déboguer avec [JQuery](https://jquery.com/)
 
 Pour ne pas alourdir le dépôt la forme développée de JQuery est à télécharger pour le déboguage.
-Pour ce faire deux fichiers peuvent être téléchargés dans `lib/` :
-* Le [code source](https://code.jquery.com/jquery-3.7.1.js) ;
-* La [cartographie](https://code.jquery.com/jquery-3.7.1.min.map).
+Pour ce faire deux fichiers peuvent être téléchargés dans `lib/` pour une version `VERSION` donnée au format `/\d\.\d\.\d/`:
+```bash
+wget "https://code.jquery.com/jquery-${VERSION}.js" -o lib/jquery.js
+wget "https://code.jquery.com/jquery-${VERSION}.min.js" -o lib/jquery.min.js
+echo '//# sourceMappingURL=jquery.min.map' >> lib/jquery.min.js
+```
 
 ### Corriger avec [ESLint](https://eslint.org/) et [Prettier](https://prettier.io/)
 

@@ -11,7 +11,7 @@ export default [
   {
     ignores: [
       "**/*.min.js",
-      "lib/jquery-3.7.1.js"
+      "lib/jquery.js"
     ]
   },
   pluginJs.configs.recommended,

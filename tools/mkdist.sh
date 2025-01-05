@@ -13,7 +13,7 @@ do
     fi
 done
 cp -u ../images/*.{png,svg} "${DIST}/images/"
-cp -u ../lib/{comicgen,jquery-3.7.1.min,ragaboom.min}.js "${DIST}/lib/"
+cp -u ../lib/{comicgen,jquery.min,ragaboom.min}.js "${DIST}/lib/"
 cp -u ../sounds/pop.ogg "${DIST}/sounds/"
 cp -u ../toons/*.png "${DIST}/toons/"
 cp -u ../bdchapril.css \
