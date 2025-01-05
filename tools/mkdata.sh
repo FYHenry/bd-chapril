@@ -29,7 +29,7 @@ function wacg()(
     echo -e "        '${TBL[-1]}'">>${CG_PATH}
 )
 
-for file in ${IMAGES_DIR}/*
+for file in "${IMAGES_DIR}"/*
 do
     images[${#images[@]}]=$( basename "$file" )
 done
@@ -101,7 +101,7 @@ done <<EOF >${SW_PATH}
     "/sounds/pop.ogg",
     "/lib/ragaboom.min.js",
 EOF
-for img in ${images[@]}
+for img in "${images[@]}"
 do
     echo -e "    \"/images/${img}\","
 done >>${SW_PATH}
@@ -136,7 +136,7 @@ sounds/pop.ogg
 lib/ragaboom.min.js
 EOF
 
-for img in ${images[@]}
+for img in "${images[@]}"
 do
     echo -e "images/${img}"
 done >>${AC_PATH}
