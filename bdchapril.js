@@ -87,7 +87,7 @@ const registerServiceWorker = async () => {
     }
 };
 
-const hasOldCache = checkCacheFunction();
-if (!hasOldCache) {
+const HAS_OLD_CACHE = checkCacheFunction();
+if (!HAS_OLD_CACHE) {
     registerServiceWorker();
 }
