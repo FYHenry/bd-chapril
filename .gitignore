@@ -17,3 +17,6 @@ lib/ragaboom.js
 lib/jquery-*.js
 lib/jquery-*.min.map
 !lib/jquery-*.min.js
+
+# Production
+dist/**
