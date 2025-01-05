@@ -17,9 +17,9 @@ export default [
   pluginJs.configs.recommended,
   {
     files: [
-      "lib/comicgen.js",
       "sw.js",
-      "data/cgdata.js"
+      "lib/ragaboom.min.js",
+      "lib/ragaboom.js"
     ],
     languageOptions: {
       sourceType: "commonjs",
@@ -33,7 +33,24 @@ export default [
     rules: globalRules
   },
   {
-    files: [ "bdchapril.js" ],
+    files: [
+      "lib/comicgen.js"
+    ],
+    languageOptions: {
+      sourceType: "module",
+      globals: {
+        $: "readonly",
+        RB: "readonly",
+        ...globals.browser
+      }
+    },
+    rules: globalRules
+  },
+  {
+    files: [
+      "bdchapril.js",
+      "data/cgdata.js"
+    ],
     languageOptions: {
       sourceType: "module",
       globals: globals.browser
