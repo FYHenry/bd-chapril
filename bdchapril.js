@@ -11,7 +11,7 @@ const checkCacheFunction = () => {
 
             const loaded = () => {
                 //var h1El = document.querySelector("h1");
-                var connectionStatus = ((navigator.onLine) ? 'online' : 'offline');
+                //var connectionStatus = ((navigator.onLine) ? 'online' : 'offline');
                 //h1El.textContent = h1El.textContent + " - currently: " + connectionStatus;
                 switch(webappCache.status)
                 {
