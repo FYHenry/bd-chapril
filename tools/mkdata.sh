@@ -45,9 +45,8 @@ do
     echo "$REPLY";
 done <<EOF >${CG_PATH}
 // CG Data
-
 /** Comicgen data */
-var cgd = {
+export const cgd = {
     /** Minitoon URLs */
     miniUrls : [
 EOF
@@ -70,7 +69,8 @@ do
     echo "$REPLY";
 done <<EOF >>${CG_PATH}
     ]
-}
+};
+export default cgd;
 EOF
 
 ## Preparing SW Code ##
