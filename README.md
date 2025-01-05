@@ -97,3 +97,6 @@ Pour ce faire deux fichiers peuvent être téléchargés dans `lib/` :
 ```bash
 npm install --production=false
 ```
+
+Pour vérifier le code de tous les fichiers on exécutera `npx eslint`.
+Pour cibler un fichier `file.js` spécifique ce sera `npx eslint -- file.js`.
