@@ -2,7 +2,8 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 
 const globalRules = {
-  "no-unused-vars": "warn"
+  "no-unused-vars": "warn",
+  "no-var": "warn"
 };
 
 /** @type {import('eslint').Linter.Config[]} */
