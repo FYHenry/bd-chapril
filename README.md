@@ -90,3 +90,10 @@ Pour ne pas alourdir le dépôt la forme développée de JQuery est à télécha
 Pour ce faire deux fichiers peuvent être téléchargés dans `lib/` :
 * Le [code source](https://code.jquery.com/jquery-3.7.1.js) ;
 * La [cartographie](https://code.jquery.com/jquery-3.7.1.min.map).
+
+### Corriger avec [ESLint](https://eslint.org/)
+
+À fin de corriger les fautes de syntaxe ESLint peut être installé via cette commande :
+```bash
+npm install --production=false
+```

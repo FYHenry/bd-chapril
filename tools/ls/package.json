@@ -15,6 +15,7 @@
   ],
   "author": "Alnotz",
   "license": "GPL-3.0-only",
+  "private": true,
   "devDependencies": {
     "lite-server": "^2.6.1"
   }
