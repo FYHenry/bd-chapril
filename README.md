@@ -91,7 +91,7 @@ Pour ce faire deux fichiers peuvent être téléchargés dans `lib/` :
 * Le [code source](https://code.jquery.com/jquery-3.7.1.js) ;
 * La [cartographie](https://code.jquery.com/jquery-3.7.1.min.map).
 
-### Corriger avec [ESLint](https://eslint.org/)
+### Corriger avec [ESLint](https://eslint.org/) et [Prettier](https://prettier.io/)
 
 À fin de corriger les fautes de syntaxe ESLint peut être installé via cette commande :
 ```bash
@@ -100,3 +100,9 @@ npm install --production=false
 
 Pour vérifier le code de tous les fichiers on exécutera `npx eslint`.
 Pour cibler un fichier `file.js` spécifique ce sera `npx eslint -- file.js`.
+
+Le formateur Prettier est inclus dans l’installation pour améliorer encore la visibilité du code.
+Il formate un fichier `file.js` ainsi :
+```bash
+npx prettier --write -- file.js
+```
