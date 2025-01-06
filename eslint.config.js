@@ -18,8 +18,7 @@ export default [
   {
     files: [
       "sw.js",
-      "lib/ragaboom.min.js",
-      "lib/ragaboom.js"
+      "lib/ragaboom.min.js"
     ],
     languageOptions: {
       sourceType: "commonjs",
@@ -49,7 +48,8 @@ export default [
   {
     files: [
       "bdchapril.js",
-      "data/cgdata.js"
+      "data/cgdata.js",
+      "lib/ragaboom.js"
     ],
     languageOptions: {
       sourceType: "module",
