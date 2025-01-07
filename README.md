@@ -26,6 +26,7 @@ Reste la création des fichiers de donnée par cette commande :
 Une dernière étape consiste à copier la charge utile dans un répertoire `dist/` à déployer pour un site Web statique :
 ```bash
 ( cd tools/; bash mkdist.sh )
+( cd tools/esbuild/; npm install ; node minify.js )
 ```
 
 Quand on change le contenu de `toons/` ces deux commandes doivent être éxécutées.
@@ -87,17 +88,7 @@ cd ../../
 ```
 L’installation de [Rustup](https://rustup.rs/) est recommandée pour compiler des applications en Rust.
 
-Reste à lancer le serveur via `./tools/sws/static-web-server -w tools/sws/config.toml` et à accéder à l’application Web via l’URL `http://localhost:3000/index.html`.
-
-### Déboguer avec [JQuery](https://jquery.com/)
-
-Pour ne pas alourdir le dépôt la forme développée de JQuery est à télécharger pour le déboguage.
-Pour ce faire deux fichiers peuvent être téléchargés dans `lib/` pour une version `VERSION` donnée au format `/\d\.\d\.\d/`:
-```bash
-wget "https://code.jquery.com/jquery-${VERSION}.js" -o lib/jquery.js
-wget "https://code.jquery.com/jquery-${VERSION}.min.js" -o lib/jquery.min.js
-echo '//# sourceMappingURL=jquery.min.map' >> lib/jquery.min.js
-```
+Reste à lancer le serveur via `./tools/sws/static-web-server -w tools/sws/config.prod.toml` et à accéder à l’application Web via l’URL `http://localhost:3000/index.html`.
 
 ### Corriger avec [ESLint](https://eslint.org/) et [Prettier](https://prettier.io/)
 
