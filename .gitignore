@@ -10,7 +10,6 @@ toons/*_mini.png
 data/
 
 # JQuery
-lib/jquery*.js
 lib/jquery*.min.map
 !lib/jquery*.min.js
 
