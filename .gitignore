@@ -7,11 +7,7 @@ tools/sws/.crates*
 
 # Installation stage
 toons/*_mini.png
-data/*
-data/swcache.json
-
-# Ragaboom
-lib/ragaboom.js
+data/
 
 # JQuery
 lib/jquery*.js
@@ -19,4 +15,4 @@ lib/jquery*.min.map
 !lib/jquery*.min.js
 
 # Production
-dist/**
+dist/

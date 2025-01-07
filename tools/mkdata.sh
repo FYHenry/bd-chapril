@@ -99,7 +99,7 @@ done <<EOF >${SW_PATH}
     "/index.html",
     "/lib/jquery.min.js",
     "/sounds/pop.ogg",
-    "/lib/ragaboom.min.js",
+    "/lib/ragaboom.js",
 EOF
 for img in "${images[@]}"
 do
@@ -133,7 +133,7 @@ lib/comicgen.js
 styles/bdchapril.css
 lib/jquery.min.js
 sounds/pop.ogg
-lib/ragaboom.min.js
+lib/ragaboom.js
 EOF
 
 for img in "${images[@]}"
