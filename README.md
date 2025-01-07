@@ -1,4 +1,4 @@
-# geektionnerd-generator
+# BD Chapril
 
 Un ancien générateur de BD qui a bien vieilli.
 
