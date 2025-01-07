@@ -97,7 +97,7 @@ done <<EOF >${SW_PATH}
     "/index.html",
     "/lib/jquery.min.js",
     "/sounds/pop.ogg",
-    "/lib/ragaboom.min.js",
+    "/lib/ragaboom.js",
     "/images/banniere_bdchapril.png",
     "/images/bg-tab.png",
     "/images/delete.svg",
@@ -146,7 +146,7 @@ images/square-arrow-right\svg
 images/square-up-right\svg
 sounds/pop.mp3
 sounds/pop.ogg
-lib/ragaboom.min.js
+lib/ragaboom.js
 EOF
 
 for nb in $( seq -s ' ' 0 $(( ${#sw_cache[@]} - 2 )) )
